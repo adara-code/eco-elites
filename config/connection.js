@@ -13,3 +13,5 @@ const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.
 // }).catch(err => {
 //     console.log("No connection")
 // })
+
+module.exports = sequelize
