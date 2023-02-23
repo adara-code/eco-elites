@@ -75,7 +75,7 @@ const resetPasswordProvider = async (req, res) => {
     }).then(rs => {
         if(rs) {
             Provider.update({
-                password: bcrypt.hashSync(req.body.resetPasswordProvider, salt)
+                password: bcrypt.hashSync(req.body.resetPasswordProvide, salt)
             }, {
                 where: {
                     providerId: req.decoded.providerId
