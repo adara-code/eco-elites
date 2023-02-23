@@ -1,8 +1,8 @@
 const express = require('express')
-const { checkingRoute } = require("../controllers/ProviderCredentials");
+const { providerSignUp } = require("../controllers/ProviderCredentials");
 
 const routing = express.Router()
 
-routing.get('/', checkingRoute)
+routing.get('/providersignup', providerSignUp)
 
 module.exports = routing
