@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const dotenv = require('dotenv')
 const { Provider } = require("../models/Provider");
+const { where } = require("sequelize");
 
 const salt = bcrypt.genSaltSync(10)
 
@@ -16,7 +17,7 @@ const providerSignUp = async (req, res) => {
         }
     }).then(rs => {
         if(rs.length >= 1) {
-            res.send("Email Exists")
+            res.status(200).json([{message:"Email Exists"}])
         } else {
             Provider.create({
                 fullNames : req.body.providerNames,
@@ -25,9 +26,9 @@ const providerSignUp = async (req, res) => {
                 password: bcrypt.hashSync(req.body.providerPassword, salt)
             }).then(rs => {
                 const providerToken = jwt.sign(rs.dataValues,process.env.JWT_KEY)
-                res.status(200).json([{ message: providerToken }])
+                res.status(200).json([{ message: "Registered Successfully" }])
             }).catch(err => {
-                res.send("Registration Failed")
+                res.status(200).json([{message: "Registration Failed"}])
             })
             
         }
@@ -48,19 +49,49 @@ const providerLogin = async (req, res) => {
             // console.log(rs.dataValues.phoneNumber)
             const checkPassword = bcrypt.compareSync(req.body.providerPassword,rs.dataValues.password)
             if(checkPassword) {
-                res.send('Login Succesful')
+                res.status(200).json([{message:'Login Succesful'}])
             }else {
-                res.send('username or password is invalid')
+                res.status(200).json([{message:'username or password is invalid'}])
             }
         } else {
-            res.send('username or password is invalid')
+            res.status(200).json([{message: 'username or password is invalid'}])
         }
     }).catch(err => {
         console.log(err)
     })
 }
 
-module.exports = {providerSignUp, providerLogin}
+// update provider password
+const resetPasswordProvider = async (req, res) => {
+    Provider.findOne({
+        where : {
+            email : req.body.providerEmail
+        }
+    }).then(rs => {
+        if(rs) {
+            Provider.update({
+                password: bcrypt.hashSync(req.body.resetPasswordProvider, salt)
+            }, {
+                where: {
+                    providerId: req.decoded.providerId
+                }
+            }
+            
+            )
+            res.status(200).json([{message: "Password updated"}])
+        } else {
+            res.status(200).json([{message: "Email not found"}])
+        }
+    }).catch(err => {
+        console.log(err)
+    })
+
+
+    // await Provider 
+    // res.send(req.decoded)
+}
+
+module.exports = {providerSignUp, providerLogin, resetPasswordProvider}
 
 
 
