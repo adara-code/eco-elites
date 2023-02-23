@@ -1,13 +1,18 @@
 const express = require('express')
-const { providerSignUp, providerLogin, resetPasswordProvider } = require("../controllers/ProviderCredentials");
+const { providerSignUp, providerLogin, resetPasswordProvider, providerProfile } = require("../controllers/ProviderCredentials");
 const verifiedAuth = require('../middleware/authentification');
 
 
 const routing = express.Router()
 
+// Provider Routing
 routing.post('/providersignup', providerSignUp)
 routing.post('/providerlogin', providerLogin)
 routing.post('/resetpassword',verifiedAuth,resetPasswordProvider)
-// routing.post('/resetpassword',resetPassword)
+routing.post('/providerprofile', verifiedAuth,providerProfile)
+
+
+
+
 
 module.exports = routing
