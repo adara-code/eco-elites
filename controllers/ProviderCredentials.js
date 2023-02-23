@@ -38,11 +38,29 @@ const providerSignUp = async (req, res) => {
 }
 
 // provider login credentials
-const providerSignIn = async (req, res) => {
-
+const providerLogin = async (req, res) => {
+    Provider.findOne({
+        where: {
+            email : req.body.providerEmail
+        }
+    }).then(rs => {
+        if(rs) {
+            // console.log(rs.dataValues.phoneNumber)
+            const checkPassword = bcrypt.compareSync(req.body.providerPassword,rs.dataValues.password)
+            if(checkPassword) {
+                res.send('Login Succesful')
+            }else {
+                res.send('username or password is invalid')
+            }
+        } else {
+            res.send('username or password is invalid')
+        }
+    }).catch(err => {
+        console.log(err)
+    })
 }
 
-module.exports = {providerSignUp, providerSignIn}
+module.exports = {providerSignUp, providerLogin}
 
 
 
