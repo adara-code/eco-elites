@@ -1,11 +1,14 @@
 const sequelize = require("../config/connection");
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 const dotenv = require('dotenv')
 const { Provider } = require("../models/Provider");
 
+const salt = bcrypt.genSaltSync(10)
+
 dotenv.config()
 
-
+// signs up the provider and generates a customized token for them
 const providerSignUp = async (req, res) => {
     Provider.findAll({
         where : {
@@ -19,7 +22,7 @@ const providerSignUp = async (req, res) => {
                 fullNames : req.body.providerNames,
                 email: req.body.providerEmail,
                 phoneNumber: req.body.providerNumber,
-                password: req.body.providerPassword
+                password: bcrypt.hashSync(req.body.providerPassword, salt)
             }).then(rs => {
                 const providerToken = jwt.sign(rs.dataValues,process.env.JWT_KEY)
                 res.status(200).json([{ message: providerToken }])
@@ -31,12 +34,15 @@ const providerSignUp = async (req, res) => {
     }).catch(err => {
         console.log(err)
     })
-
-    
     // res.send("It's working")
 }
 
-module.exports = {providerSignUp}
+// provider login credentials
+const providerSignIn = async (req, res) => {
+
+}
+
+module.exports = {providerSignUp, providerSignIn}
 
 
 
