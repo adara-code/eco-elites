@@ -3,22 +3,38 @@ const sequelize = require('../config/connection')
 
 
 const ProviderProfile = sequelize.define('PProfile', {
-    fullNames: {
+    firstName : {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    email: {
+    lastName : {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    dateOfBirth: {
-        type: Sequelize.DataTypes.DATEONLY,
-        allowNull: true
-    },
-    phoneNumber: {
+    email : {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
+    phoneNumber : {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+    },
+    gender : {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+    },
+    state : {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+    },
+    typeOfUser : {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+    },
+    collectionCenter : {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+    }
     
 })
 

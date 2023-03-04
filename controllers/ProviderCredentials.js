@@ -38,7 +38,7 @@ const providerSignUp = async (req, res) => {
     }).catch(err => {
         console.log(err)
     })
-
+    
     // res.send("It's working")
 }
 
