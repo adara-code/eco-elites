@@ -1,10 +1,13 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../config/connection')
+const bcrypt = require('bcrypt')
 const { UserSignUp } = require('../models/UserSignup')
+
+const salt = bcrypt.genSaltSync(10)
 
 const signup = async (req,res) => {
     const userEmail = req.body.emailSignup
-    const userPassword = req.body.passwordSignup
+    const userPassword = bcrypt.hashSync(req.body.passwordSignup,salt)
 
     UserSignUp.findAll({
         where: {
