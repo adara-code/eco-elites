@@ -1,14 +1,16 @@
 const express = require('express');
-const { signup } = require('../controllers/UserCredentials');
+const { signup, newsSubscription } = require('../controllers/UserCredentials');
 // const { providerSignUp, providerLogin, resetPasswordProvider, providerProfile } = require("../controllers/ProviderCredentials");
 // const {collectorSignUp, collectorLogin, resetPasswordCollector, collectorProfile} = require("../controllers/CollectorCredentials")
 const verifiedAuth = require('../middleware/authentification');
 
 
 
+
 const routing = express.Router()
 
 routing.post('/signup', signup)
+routing.post('/subscriptions', newsSubscription)
 
 // // Provider Routing
 // routing.post('/providersignup', providerSignUp)
