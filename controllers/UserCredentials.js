@@ -51,23 +51,26 @@ const newsSubscription = async(req,res) => {
 
 const profileSetup = async(req,res) => {
     const userProfile = {
-     userFirstName : req.body.firstName,
-     userLastName : req.body.lastName,
-     userEmail : req.body.email,
-     userPhone : req.body.phoneNumber,
-     userGender : req.body.gender,
-     userState : req.body.state,
-     userType : req.body.typeOfUser,
-     userCity : req.body.city,
-     userStreet : req.body.street,
+     firstName : req.body.fName,
+     lastName : req.body.lName,
+     email : req.body.uEmail,
+     phoneNumber : req.body.uPhoneNumber,
+     gender : req.body.uGender,
+     state : req.body.uState,
+     typeOfUser : req.body.uTypeOfUser,
+     city : req.body.uCity,
+     street : req.body.uStreet,
+     signupUserId: req.decoded.userId
     }
 
     ProfileSetup.create(userProfile).then(rs => {
+        res.status(200).json([{message: "Profile created"}])
         console.log(rs)
     }).catch(err => {
         console.log(err)
     })
 
+        // res.status(200).json([{message: "Touchdown"}])
 
 }
 
