@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../config/connection')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const { UserSignUp } = require('../models/UserSignup')
 const { NewsSubscription } = require('../models/newsSubscription')
 
@@ -22,10 +23,12 @@ const signup = async (req,res) => {
             UserSignUp.create({
                 email : userEmail,
                 password: userPassword
+            }).then(rs => {
+                const userToken = jwt.sign(rs.dataValues,process.env.JWT_KEY)
+                res.status(200).json([{message: "Signup successful"}])
+                console.log(userToken)
             })
-            res.status(200).json([{message: "Signup successful"}])
         }
-        console.log(rs)
     }).catch(err => {
         console.log(err)
     })
@@ -44,10 +47,13 @@ const newsSubscription = async(req,res) => {
     // res.status(200).json([{message: "Touchdown"}])
 }
 
+
+
 // sequelize.sync({ force: true }).then(rs => {
 //     console.log(rs)
 // }).catch(err => {
 //     console.log(err)
 // })
+
 
 module.exports = {signup, newsSubscription}

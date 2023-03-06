@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const sequelize = require('../config/connection')
 
 
-const CollectorProfile = sequelize.define('CProfile', {
+const ProfileSetup = sequelize.define('profile', {
     firstName : {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
@@ -31,7 +31,11 @@ const CollectorProfile = sequelize.define('CProfile', {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    collectionCenter : {
+    city : {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+    },
+    street : {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     }
