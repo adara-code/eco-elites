@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const sequelize = require('../config/connection')
 
 
-const ProviderProfile = sequelize.define('PProfile', {
+const ProfileSetup = sequelize.define('profile', {
     firstName : {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
@@ -31,11 +31,15 @@ const ProviderProfile = sequelize.define('PProfile', {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    collectionCenter : {
+    city : {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+    },
+    street : {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     }
     
 })
 
-module.exports = {ProviderProfile}
+module.exports = {ProfileSetup}
