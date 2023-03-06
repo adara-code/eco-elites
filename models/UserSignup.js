@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
-const sequelize = require('../config/connection')
+const sequelize = require('../config/connection');
+const { ProfileSetup } = require('./ProfileSetup');
 
 
 const UserSignUp = sequelize.define('signup', {
@@ -19,5 +20,13 @@ const UserSignUp = sequelize.define('signup', {
         allowNull: false
     }
 })
+
+UserSignUp.hasOne(ProfileSetup, {
+    foreignKey : {
+        type: Sequelize.UUID,
+        allowNull: false
+    }
+});
+ProfileSetup.belongsTo(UserSignUp)
 
 module.exports = {UserSignUp}
