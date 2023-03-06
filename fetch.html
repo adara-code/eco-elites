@@ -1,0 +1,20 @@
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<script>
+    const baseUrl = 'xyz'
+    const signupForm = document.getElementById('signupForm')
+    e.preventDefault()
+
+    const signup = () => {
+        const inputEmail = document.getElementById('email').value
+        const inputPassword = document.getElementById('password').value
+
+        axios.post(`${baseUrl}/signup`, {
+            emailSignup : inputEmail,
+            passwordSignup : inputPassword
+        }).then(rs => {
+            console.log(rs)
+        }).catch(err)
+    }
+</script>
