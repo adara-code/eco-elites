@@ -11,8 +11,8 @@
         const inputPassword = document.getElementById('password').value
 
         axios.post(`${baseUrl}/signup`, {
-            emailSignup : inputEmail,
-            passwordSignup : inputPassword
+            email : inputEmail,
+            password : inputPassword
         }).then(rs => {
             console.log(rs)
         }).catch(err)

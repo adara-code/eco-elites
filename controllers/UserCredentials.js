@@ -76,11 +76,11 @@ const profileSetup = async(req,res) => {
 
 
 
-sequelize.sync({ force: true }).then(rs => {
-    console.log(rs)
-}).catch(err => {
-    console.log(err)
-})
+// sequelize.sync({ force: true }).then(rs => {
+//     console.log(rs)
+// }).catch(err => {
+//     console.log(err)
+// })
 
 
 module.exports = {signup, newsSubscription, profileSetup}

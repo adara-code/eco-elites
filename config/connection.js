@@ -11,6 +11,8 @@ const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.
     dialect: 'mysql'
   });
 
+  
+
 // console.log(process.env.DATABASE)
 // console.log(process.env.USER)
 // console.log(process.env.PASSWORD)
