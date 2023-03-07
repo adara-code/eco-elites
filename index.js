@@ -9,9 +9,16 @@ const app = express()
 
 
 // enable api to be accessible cross-origin
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
+const whitelist = ['http://localhost:3000', 'https://planetprotectors.netlify.app']
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error())
+    }
+  }
+}
 
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "*");
@@ -27,7 +34,7 @@ app.use(express.urlencoded({extended: true}))
 const PORT = process.env.PORT
 
 // route setup
-app.use('/', routing)
+app.use('/', cors(corsOptions),routing)
 
 
 // run server
