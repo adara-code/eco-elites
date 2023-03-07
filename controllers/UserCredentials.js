@@ -39,7 +39,7 @@ const signup = async (req,res) => {
     }).catch(err => {
         console.log(err)
     })
-    res.set("Access-Control-Allow-Origin", "*")
+    res.set("Access-Control-Allow-Origin", "http://localhost:3000")
 
     // res.status(200).json([{message: "Touchdown"}])
 }
@@ -52,7 +52,7 @@ const newsSubscription = async(req,res) => {
     }).catch(err => {
         res.status(200).json([{message: err}])
     })
-    res.set("Access-Control-Allow-Origin", "*")
+    res.set("Access-Control-Allow-Origin", "http://localhost:3000")
     // res.status(200).json([{message: "Touchdown"}])
 }
 
@@ -76,7 +76,7 @@ const profileSetup = async(req,res) => {
     }).catch(err => {
         console.log(err)
     })
-    res.set("Access-Control-Allow-Origin", "*")
+    res.set("Access-Control-Allow-Origin", "http://localhost:3000")
 
         // res.status(200).json([{message: "Touchdown"}])
 }
