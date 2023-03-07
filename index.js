@@ -9,12 +9,9 @@ const app = express()
 
 
 // enable api to be accessible cross-origin
-app.options("*", cors())
-
-const corsOptions = {
-    origin:"http://127.0.0.1:2000"
-}
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "*");
