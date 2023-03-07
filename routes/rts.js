@@ -7,7 +7,7 @@ const verifiedAuth = require('../middleware/authentification');
 
 const routing = express.Router()
 
-routing.post('/su', signup)
+routing.post('/signup', signup)
 routing.post('/subscriptions', newsSubscription)
 routing.post('/profile', verifiedAuth,profileSetup)
 
