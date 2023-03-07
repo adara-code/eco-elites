@@ -5,35 +5,41 @@ const jwt = require('jsonwebtoken')
 const { UserSignUp } = require('../models/UserSignup')
 const { NewsSubscription } = require('../models/newsSubscription')
 const { ProfileSetup } = require('../models/ProfileSetup')
+const cors = require('cors')
+const express = require('express')
+const app = express()
+
+app.use(cors())
 
 
 
 const salt = bcrypt.genSaltSync(10)
 
 const signup = async (req,res) => {
-    const userEmail = req.body.emailSignup
-    const userPassword = bcrypt.hashSync(req.body.passwordSignup,salt)
+    // const userEmail = req.body.emailSignup
+    // const userPassword = bcrypt.hashSync(req.body.passwordSignup,salt)
 
-    UserSignUp.findAll({
-        where: {
-            email : userEmail
-        }
-    }).then(rs => {
-        if(rs.length > 0) {
-            res.status(200).json([{message: "Email taken. Try again"}])
-        } else {
-            UserSignUp.create({
-                email : userEmail,
-                password: userPassword
-            }).then(rs => {
-                const userToken = jwt.sign(rs.dataValues,process.env.JWT_KEY)
-                res.status(200).json([{message: "Signup successful"}])
-                console.log(userToken)
-            })
-        }
-    }).catch(err => {
-        console.log(err)
-    })
+    // UserSignUp.findAll({
+    //     where: {
+    //         email : userEmail
+    //     }
+    // }).then(rs => {
+    //     if(rs.length > 0) {
+    //         res.status(200).json([{message: "Email taken. Try again"}])
+    //     } else {
+    //         UserSignUp.create({
+    //             email : userEmail,
+    //             password: userPassword
+    //         }).then(rs => {
+    //             const userToken = jwt.sign(rs.dataValues,process.env.JWT_KEY)
+    //             res.status(200).json([{message: "Signup successful"}])
+    //             console.log(userToken)
+    //         })
+    //     }
+    // }).catch(err => {
+    //     console.log(err)
+    // })
+    res.set("Access-Control-Allow-Origin", "http://localhost:3000")
 
     // res.status(200).json([{message: "Touchdown"}])
 }
