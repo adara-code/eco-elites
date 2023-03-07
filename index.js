@@ -12,7 +12,7 @@ const app = express()
 app.options("*", cors())
 
 const corsOptions = {
-    origin:"http://127.0.0.1:3000"
+    origin:"http://127.0.0.1:2000"
 }
 app.use(cors(corsOptions));
 
