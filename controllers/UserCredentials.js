@@ -33,6 +33,7 @@ const signup = async (req,res) => {
     }).catch(err => {
         console.log(err)
     })
+    // res.status(200).json([{message: "Signup successful"}])
     // res.status(200).json([{message: "Touchdown"}])
 }
 
