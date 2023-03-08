@@ -10,17 +10,17 @@ const app = express()
 app.use(cors())
 
 
-// const corsOptions = {
-//   origin: 'http://localhost:3000/',
-//   credentials: true,
-//   optionSuccessStatus: 200
-// }
+const corsOptions = {
+  origin: 'http://localhost:3000/',
+  credentials: true,
+  optionSuccessStatus: 200
+}
 
 // app.use(cors(corsOptions))
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', "http://localhost:3000");
 
-// });
+});
 
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "*");
