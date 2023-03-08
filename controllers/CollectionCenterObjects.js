@@ -9,7 +9,7 @@ const { CollectionCenter } = require('../models/CollectionCenters');
 //     city: "2a, Rumokoro"
 // });
 
-const testing = async (req, res) => {
+const centersList = async (req, res) => {
     //creates the collection centers in the database
     CollectionCenter.bulkCreate([
         {
@@ -134,4 +134,4 @@ const testing = async (req, res) => {
 // console.log(jane instanceof User); // true
 // console.log(jane.name); // "Jane"
 
-module.exports = { testing }
+module.exports = { centersList }
