@@ -76,7 +76,7 @@ const profileSetup = async(req,res) => {
     }).catch(err => {
         console.log(err)
     })
-    res.set("Access-Control-Allow-Origin", "http://localhost:3000")
+    res.set("Access-Control-Allow-Origin", "http://127.0.0.1:3000")
 
         // res.status(200).json([{message: "Touchdown"}])
 }
