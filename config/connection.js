@@ -5,13 +5,17 @@ const dotenv = require('dotenv')
 // dotenv.config({path: '../.env'})
 dotenv.config()
 
-const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
-    host: process.env.HOST,
-    port: process.env.DATABASE_PORT,
+// const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
+//     host: process.env.HOST,
+//     port: process.env.DATABASE_PORT,
+//     dialect: 'mysql'
+//   });
+
+const sequelize = new Sequelize("ecoelites", "root", "gue55me", {
+  host: "localhost",
+    // port: process.env.DATABASE_PORT,
     dialect: 'mysql'
   });
-
-
 
 // console.log(process.env.DATABASE)
 // console.log(process.env.USER)
