@@ -10,20 +10,20 @@ const { ProfileSetup } = require('../models/ProfileSetup')
 const salt = bcrypt.genSaltSync(10)
 
 const signup = async (req,res) => {
-    const userEmail = req.body.emailSignup
-    const userPassword = bcrypt.hashSync(req.body.passwordSignup,salt)
+    // const userEmail = req.body.emailSignup
+    // const userPassword = bcrypt.hashSync(req.body.passwordSignup,salt)
 
-    UserSignUp.findAll({
+    await UserSignUp.findAll({
         where: {
-            email : userEmail
+            email : req.body.email
         }
     }).then(rs => {
         if(rs.length >= 1) {
             res.status(200).json([{message: "Email taken. Try again"}])
         } else {
             UserSignUp.create({
-                email : userEmail,
-                password: userPassword
+                email : req.body.email,
+                password: req.body.password
             }).then(rs => {
                 const userToken = jwt.sign(rs.dataValues,process.env.JWT_KEY)
                 res.status(200).json([{message: "Signup successful"}])
