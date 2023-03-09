@@ -18,7 +18,7 @@ const signup = async (req,res) => {
             email : userEmail
         }
     }).then(rs => {
-        if(rs.length > 0) {
+        if(rs.length >= 1) {
             res.status(200).json([{message: "Email taken. Try again"}])
         } else {
             UserSignUp.create({

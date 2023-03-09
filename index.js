@@ -2,28 +2,25 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 const cors = require('cors')
-const routing = require('./routes/rts')
+const {routing} = require('./routes/rts.js')
 
 dotenv.config()
 const app = express()
+// port setup
+const PORT = process.env.PORT
 
-app.use(function(req,res,next){
-  res.header('Access-Control-Allow-Origin', "*");
-  res.header('Access-Control-Allow-Methods', 'GET, POST');
-  res.header('Access-Control-Request-Method', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  next()
-})
+// setting up cross-origin policy
+app.use(cors())
 
 // enables data to be passed through req.body
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-// port setup
-const PORT = process.env.PORT
+
 
 // route setup
 app.use('/', routing)
+app.use('/registration', routing)
 
 
 // run server
