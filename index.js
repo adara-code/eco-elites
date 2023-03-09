@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 const cors = require('cors')
-const {routing} = require('./routes/rts.js')
+const {router} = require('./routes/rts.js')
 
 dotenv.config()
 const app = express()
@@ -17,10 +17,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 
-
 // route setup
-app.use('/', routing)
-app.use('/registration', routing)
+app.use('/', router)
 
 
 // run server

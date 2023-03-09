@@ -1,18 +1,16 @@
 const express = require('express');
-const { centersList } = require('../controllers/CollectionCenterObjects');
-const { signup, newsSubscription, profileSetup } = require('../controllers/UserCredentials');
-const verifiedAuth = require('../middleware/authentification');
+const { centersList } = require('../controllers/CollectionCenterObjects.js');
+const { signup, newsSubscription, profileSetup } = require('../controllers/UserCredentials.js');
+const verifiedAuth = require('../middleware/authentification.js');
 
+const router = express.Router()
 
-
-const routing = express.Router()
-
-routing.post('/registration', signup)
-routing.post('/subscriptions', newsSubscription)
-routing.post('/profile', verifiedAuth,profileSetup)
-routing.post('/centers', centersList)
+router.post('/registration', signup)
+router.post('/subscriptions', newsSubscription)
+router.post('/profile', verifiedAuth,profileSetup)
+router.post('/centers', centersList)
 
 
 
 
-module.exports = routing
+module.exports = {router}
