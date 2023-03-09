@@ -26,7 +26,7 @@ const signup = async (req,res) => {
                 password: req.body.password
             }).then(rs => {
                 const userToken = jwt.sign(rs.dataValues,process.env.JWT_KEY)
-                res.status(200).json([{message: "Signup successful"}])
+                res.status(200).json([{message: userToken}])
                 console.log(userToken)
             })
         }
