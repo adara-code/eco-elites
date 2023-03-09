@@ -13,10 +13,10 @@ const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.
 
 
 
-// console.log(process.env.DATABASE)
-// console.log(process.env.USER)
-// console.log(process.env.PASSWORD)
-// console.log(process.env.HOST)
+console.log(process.env.DATABASE)
+console.log(process.env.USER)
+console.log(process.env.PASSWORD)
+console.log(process.env.HOST)
 
 
 module.exports = sequelize;
